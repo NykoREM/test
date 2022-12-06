@@ -1,0 +1,50 @@
+<mvc:View controllerName="ui5.ui.controller.Table" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" id="ViewTable">
+    <f:DynamicPage>
+        <f:content>
+        	<Table id="idProductsTable"	items="{Books>/}">
+				<headerToolbar>
+					<OverflowToolbar>
+						<content>
+							<Button press="onOpenFragmet" text="Inserisci" icon="sap-icon://add"/>
+							<Button press="onInserisci" text="Inserisci" icon="sap-icon://add" type="Emphasized"></Button>
+						</content>
+					</OverflowToolbar>
+				</headerToolbar>
+					<columns>
+						<Column>
+							<Text text="Titolo" />
+							</Column>
+						<Column>
+						<Text text="Genere" />
+						</Column>
+							<Column>
+							<Text text="Prezzo" />
+							</Column>
+							<Column>
+							<Text text="Autore" />
+							</Column>
+							<Column></Column>
+							<Column></Column>
+						
+					</columns>
+					<items>
+						<ColumnListItem vAlign="Middle">
+							<cells>
+							<Input value="{Books>title}" enabled="{Books>isEdit}"/>
+							<Text text="{Books>genre}" />
+							<Text text="{Books>price}" />
+							<Text text="{Books>author_ID}" />
+							<HBox>
+								<Button icon="sap-icon://edit" press="onEdit" visible="{=${Books>isEdit}===true?false:true}" />
+								<Button icon="sap-icon://save" press="onSave" visible="{Books>isEdit}"/>
+							</HBox>
+							<Button type="Reject" icon="sap-icon://delete" press="onDelete"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+		</f:content>
+    </f:DynamicPage>
+</mvc:View>

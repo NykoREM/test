@@ -1,0 +1,31 @@
+<mvc:View xmlns:core="sap.ui.core" controllerName="ui5.ui.controller.Inserisci" xmlns:f="sap.f" xmlns:fb="sap.ui.comp.filterbar" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+    <Page title="Inserimento Dati">
+        <HBox justifyContent="SpaceAround">
+            <VBox class="sapUiSmallMarginTop">
+                <Label text="Titolo" design="Bold"/>
+                <Input type="Text" id="title" />
+            </VBox>
+            <VBox class="sapUiSmallMarginTop">
+                <Label text="Genere" design="Bold" />
+                <Select id="genre" items="{Genre>/}" forceSelection="false">
+                    <core:Item key="{Genre>type}" text="{Genre>type}" />
+                </Select>
+            </VBox>
+            <VBox class="sapUiSmallMarginTop">
+                <Label text="Prezzo" design="Bold"/>
+                <Input type="Number" id="price" />
+            </VBox>
+            <VBox class="sapUiSmallMarginTop">
+                <Label text="Autore" design="Bold"/>
+                <Input type="Number" id="author" />
+            </VBox>
+        </HBox>
+    <footer>
+        <Toolbar>
+            <Button text="Indietro" press="onBack"/>
+            <ToolbarSpacer/>
+            <Button type="Accept" press="onConfirm" icon="sap-icon://save" text="Conferma"/>
+        </Toolbar>
+    </footer>
+    </Page>
+</mvc:View>

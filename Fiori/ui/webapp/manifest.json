@@ -1,0 +1,174 @@
+{
+  "_version": "1.42.0",
+  "sap.app": {
+    "id": "ui5.ui",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.8.1",
+      "toolsId": "a2128014-86d6-49bd-ad01-7731be94ed29"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+          "publicapp-inbound": {
+              "signature": {
+                  "parameters": {},
+                  "additionalParameters": "allowed"
+              },
+              "semanticObject": "Book",
+              "action": "display",
+              "title": "{{flpTitle}}",
+              "subTitle": "{{flpSubtitle}}",
+              "icon": "",
+              "indicatorDataSource": {
+                  "dataSource": "mainService",
+                  "path": "count",
+                  "refresh": 10
+              }
+          }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": false,
+    "dependencies": {
+      "minUI5Version": "1.102.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.f": {},
+        "sap.suite.ui.generic.template": {},
+        "sap.ui.comp": {},
+        "sap.ui.generic.app": {},
+        "sap.ui.table": {},
+        "sap.ushell": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "ui5.ui.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+
+        "viewType": "XML",
+
+        "async": true,
+
+        "viewPath": "ui5.ui.view",
+
+        "controlId": "pageContainer",
+
+        "clearControlAggregation": false,
+
+        "controlAggregation": "pages"
+      },
+      "routes": [
+        {
+          "name": "RouteMaster",
+          "pattern": "",
+          "target": [
+            "TargetMaster"
+          ]
+        },
+        {
+          "name": "Inserisci",
+          "pattern": "InserimentoLibro",
+          "target": [
+            "Inserisci"
+          ]
+        }
+      ],
+      "App": {
+
+        "viewId": "App",
+
+        "viewName": "App",
+
+        "viewLevel": 0
+
+       },
+      "targets": {
+        "TargetMaster": {
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Master",
+          "viewName": "Master"
+        },
+        "Inserisci":{
+          "viewType": "XML",
+          "transition": "slide",
+          "clearControlAggregation": false,
+          "viewId": "Inserisci",
+          "viewName": "Inserisci"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "ui5.ui.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "App"
+    },
+    "sap.cloud": {
+      "public": true,
+      "service": "Fiori"
+  }
+  }
+}

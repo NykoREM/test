@@ -1,0 +1,19 @@
+<mvc:View controllerName="ui5.ui.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Shell id="shell">
+        <App id="app" >
+            <Page showHeader="false" showSubHeader="false">
+                <content>
+                            <NavContainer id="pageContainer">
+                                <pages>
+                                    <!-- Content -->
+                                </pages>
+                            </NavContainer>
+                </content>
+            </Page>
+        </App>
+    </Shell>
+    
+</mvc:View>

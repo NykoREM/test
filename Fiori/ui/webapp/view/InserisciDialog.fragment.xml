@@ -1,0 +1,43 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+   <Dialog contentWidth="80%"
+      id="dialogID"
+      title="Inserisci Nuovo libro">
+      <content>
+      <HBox justifyContent="SpaceAround">
+            <VBox class="sapUiTinyMargin">
+                <Label text="Titolo" design="Bold"/>
+                <Input type="Text" id="titleID" width='25rem'/>
+
+                <Label text="Prezzo" design="Bold"/>
+                <Input type="Number" id="priceID" />
+
+                <Label text="Autore" design="Bold"/>
+                <Input type="Number" id="authorID" />
+
+                <Label text="Genere" design="Bold" />
+                <Select id="genreID" items="{Genre>/}" forceSelection="false" width='25rem'>
+                    <core:Item key="{Genre>type}" text="{Genre>type}" />
+                </Select>
+            </VBox>
+             <VBox class="sapUiSmallMarginTop">
+                <Label text="Autore Bio" design="Bold"/>
+                <Input type="Text" id="authorbio" />
+
+                <Label text="Autore date of birth" design="Bold"/>
+                <Input type="Date" id="authordatebirth" />
+
+                <Label text="Autore date of death" design="Bold"/>
+                <Input type="Date" id="authordatedeath" />
+            </VBox>
+            
+        </HBox>
+      </content>
+
+      <beginButton>
+        <Button press="onDialogueConfirm" text="Save"/>
+      </beginButton>
+      <endButton >
+        <Button press="onDialogueClose" text="Close"/>
+      </endButton >
+   </Dialog>
+</core:FragmentDefinition>

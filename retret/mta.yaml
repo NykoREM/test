@@ -1,0 +1,69 @@
+_schema-version: "3.2"
+ID: retret
+version: 0.0.1
+modules:
+- name: retret-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: retret-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - ui5uiproject1.zip
+      name: ui5uiproject1
+      target-path: resources/
+- name: ui5uiproject1
+  type: html5
+  path: project1
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: retret-approuter
+  type: approuter.nodejs
+  path: retret-approuter
+  requires:
+  - name: retret_html_repo_runtime
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+resources:
+- name: retret-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: retret-html5-srv
+    service-plan: app-host
+- name: retret-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: false
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: retret-destination-service
+    service-plan: lite
+- name: retret_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+parameters:
+  deploy_mode: html5-repo
+
